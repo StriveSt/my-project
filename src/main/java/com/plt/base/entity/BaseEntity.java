@@ -1,5 +1,6 @@
 package com.plt.base.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  *
  * @author zxq
  */
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Serializable {
     /**
      * id
      */
