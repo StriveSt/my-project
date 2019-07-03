@@ -43,10 +43,6 @@ public final class Result<T> implements Serializable {
         return new Result<>(e.getCode(), e.getMessage(), null);
     }
 
-    public static <T> Result<T> of(ResultEnum e, String message) {
-        return new Result<>(e.getCode(), message, null);
-    }
-
     public static <T> Result<T> of(ResultEnum e, T data) {
         return new Result<>(e.getCode(), e.getMessage(), data);
     }
