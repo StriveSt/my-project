@@ -7,47 +7,57 @@ import java.io.Serializable;
  *
  * @author zxq
  */
-public final class Result<T> implements Serializable {
+public class Result<T> implements Serializable {
     /**
      * 响应码
      */
-    private final int code;
+    private int code;
     /**
      * 消息
      */
-    private final String message;
+    private String message;
     /**
      * 报文体
      */
-    private final T data;
-
-    private Result(int code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
+    private T data;
 
     public int getCode() {
         return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getMessage() {
         return message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public T getData() {
         return data;
     }
 
-    public static <T> Result<T> of(ResultEnum e) {
-        return new Result<>(e.getCode(), e.getMessage(), null);
+    public void setData(T data) {
+        this.data = data;
     }
 
-    public static <T> Result<T> of(ResultEnum e, T data) {
-        return new Result<>(e.getCode(), e.getMessage(), data);
+    public static <T> Result<T> generateSuccess(T data) {
+        Result<T> result = new Result<>();
+        result.setCode(ResultEnum.OK.getCode());
+        result.setMessage(ResultEnum.OK.getMessage());
+        result.setData(data);
+        return result;
     }
 
-    public static <T> Result<T> of(ResultEnum e, String message, T data) {
-        return new Result<>(e.getCode(), message, data);
+    public static <T> Result<T> generateResult(ResultEnum resultEnum, T data) {
+        Result<T> result = new Result<>();
+        result.setCode(resultEnum.getCode());
+        result.setMessage(resultEnum.getMessage());
+        result.setData(data);
+        return result;
     }
 }
