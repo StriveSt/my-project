@@ -5,7 +5,6 @@ import com.plt.base.common.ResultEnum;
 import com.plt.base.exception.AuthException;
 import com.plt.base.exception.BusinessException;
 import com.plt.base.exception.IllegalParamException;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,16 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @author zxq
  */
-@Slf4j
 @ControllerAdvice
 public class GlobalExceptionAdvice {
-
-    private Result forException(ResultEnum e, Exception ex) {
-        log.error(e.name(), ex);
-        Result result = new Result<>(e);
-        result.setMessage(ex.getMessage());
-        return result;
-    }
     /**
      * 拦截所有错误
      */
@@ -46,5 +37,12 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler(AuthException.class)
     public Result authHandler(AuthException ex) {
         return forException(ResultEnum.AUTH_FAIL, ex);
+    }
+
+
+    private Result forException(ResultEnum e, Exception ex) {
+        Result result = new Result(e);
+        result.setMessage(ex.getMessage());
+        return result;
     }
 }
