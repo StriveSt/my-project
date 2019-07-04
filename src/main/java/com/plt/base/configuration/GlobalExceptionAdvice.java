@@ -20,6 +20,7 @@ public class GlobalExceptionAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public Result exHandler(Exception ex) {
+        ex.printStackTrace();
         return forException(ResultEnum.SYSTEM_EXCEPTION_ERROR, ex);
     }
 
