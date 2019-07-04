@@ -21,6 +21,14 @@ public class Result<T> implements Serializable {
      */
     private T data;
 
+    public Result() {
+    }
+
+    public Result(ResultEnum resultEnum) {
+        this.code = resultEnum.getCode();
+        this.message = resultEnum.getMessage();
+    }
+
     public int getCode() {
         return code;
     }
@@ -49,14 +57,6 @@ public class Result<T> implements Serializable {
         Result<T> result = new Result<>();
         result.setCode(ResultEnum.OK.getCode());
         result.setMessage(ResultEnum.OK.getMessage());
-        result.setData(data);
-        return result;
-    }
-
-    public static <T> Result<T> generateResult(ResultEnum resultEnum, T data) {
-        Result<T> result = new Result<>();
-        result.setCode(resultEnum.getCode());
-        result.setMessage(resultEnum.getMessage());
         result.setData(data);
         return result;
     }

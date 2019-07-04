@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * @author zxq
  */
 @Configuration
-public class WebMvcConfiguration {
+public class WebMvcAutoConfiguration {
     @Bean
     public GlobalExceptionAdvice getGlobalExceptionAdvice() {
         return new GlobalExceptionAdvice();
