@@ -22,9 +22,9 @@ public class GlobalExceptionAdvice {
     /**
      * 拦截所有错误
      */
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(RuntimeException.class)
     @ResponseBody
-    public Result exHandler(Exception ex) {
+    public Result exHandler(RuntimeException ex) {
         return forException(ResultEnum.SYSTEM_EXCEPTION_ERROR, ex);
     }
 
