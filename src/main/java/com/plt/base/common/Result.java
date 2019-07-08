@@ -48,7 +48,7 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> generateSuccess(T data) {
-        return new Result<T>(ResultEnum.OK, data);
+        return generate(ResultEnum.OK, data);
     }
 
     public static <T> Result<T> generate(ResultEnum e, T data) {
@@ -56,6 +56,6 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> generate(ResultEnum e) {
-        return new Result<>(e, null);
+        return generate(e, null);
     }
 }
