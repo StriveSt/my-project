@@ -5,10 +5,10 @@ package com.plt.base.common;
  */
 public enum ResultEnum {
     OK(10000, "SUCCESS"),
-    AUTH_FAIL(20001, "授权权限不足"),
-    ILLEGAL_PARAM(40001, "非法的参数"),
+    AUTH_FAIL(20001, "权限不足"),
+    ILLEGAL_PARAM(40001, "非法参数"),
     BUSINESS_FAIL(40002, "业务处理失败"),
-    SYSTEM_EXCEPTION_ERROR(50000, "系统异常")
+    SYSTEM_EXCEPTION_ERROR(50000, "系统异常"),
     ;
 
     private int code;

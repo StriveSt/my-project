@@ -21,20 +21,14 @@ public class Result<T> implements Serializable {
      */
     private T data;
 
-    public Result() {
-    }
-
-    public Result(ResultEnum resultEnum) {
+    private Result(ResultEnum resultEnum, T data) {
         this.code = resultEnum.getCode();
         this.message = resultEnum.getMessage();
+        this.data = data;
     }
 
     public int getCode() {
         return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public String getMessage() {
@@ -54,10 +48,14 @@ public class Result<T> implements Serializable {
     }
 
     public static <T> Result<T> generateSuccess(T data) {
-        Result<T> result = new Result<>();
-        result.setCode(ResultEnum.OK.getCode());
-        result.setMessage(ResultEnum.OK.getMessage());
-        result.setData(data);
-        return result;
+        return new Result<T>(ResultEnum.OK, data);
+    }
+
+    public static <T> Result<T> generate(ResultEnum e, T data) {
+        return new Result<>(e, data);
+    }
+
+    public static <T> Result<T> generate(ResultEnum e) {
+        return new Result<>(e, null);
     }
 }
