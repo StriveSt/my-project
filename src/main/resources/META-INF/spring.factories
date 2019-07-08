@@ -1,1 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.plt.base.configuration.WebMvcAutoConfiguration
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.plt.base.configuration.ControllerAdviceAutoConfiguration
