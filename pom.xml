@@ -16,6 +16,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
         <mybatis.plus.version>3.1.2</mybatis.plus.version>
+        <mysql.driver.version>5.1.47</mysql.driver.version>
     </properties>
 
 
@@ -30,11 +31,15 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis.plus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.driver.version}</version>
         </dependency>
     </dependencies>
 </project>
