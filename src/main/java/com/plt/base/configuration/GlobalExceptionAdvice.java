@@ -46,7 +46,8 @@ public class GlobalExceptionAdvice {
 
 
     private Result forException(ResultEnum e, Exception ex) {
-        log.error(ex.getMessage(),ex);
+        log.error("异常信息：{}", ex.getMessage());
+        ex.printStackTrace();
         Result<Object> r = Result.generate(e);
         r.setMessage(ex.getMessage());
         return r;
