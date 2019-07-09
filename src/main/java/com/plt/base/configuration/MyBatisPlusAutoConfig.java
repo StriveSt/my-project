@@ -24,7 +24,7 @@ public class MyBatisPlusAutoConfig {
         PaginationInterceptor interceptor = new PaginationInterceptor();
 
         List<ISqlParser> list = new LinkedList<>();
-        paginationInterceptor().setSqlParserList(list);
+        interceptor.setSqlParserList(list);
         // 攻击SQL阻断解析器
         list.add(new BlockAttackSqlParser());
 
@@ -36,16 +36,12 @@ public class MyBatisPlusAutoConfig {
      * dev test 环境开启, 线上不开启
      */
     @Bean
-    @Profile({"dev","test"})
+    @Profile({"dev", "test"})
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor interceptor = new PerformanceInterceptor();
-        /**
-         * SQL格式化
-         */
+        // SQL格式化
         interceptor.setFormat(true);
-        /**
-         * 记录进日志
-         */
+        // 记录进日志
         interceptor.setWriteInLog(true);
         return interceptor;
     }
