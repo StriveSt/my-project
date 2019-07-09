@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author zxq
  */
 @ControllerAdvice
+@ResponseBody
 public class GlobalExceptionAdvice {
 
     private Logger log = LoggerFactory.getLogger(GlobalExceptionAdvice.class);
@@ -23,13 +24,11 @@ public class GlobalExceptionAdvice {
      * 拦截所有错误
      */
     @ExceptionHandler(RuntimeException.class)
-    @ResponseBody
     public Result exHandler(RuntimeException ex) {
         return forException(ResultEnum.SYSTEM_EXCEPTION_ERROR, ex);
     }
 
     @ExceptionHandler(BusinessException.class)
-    @ResponseBody
     public Result bizExHandler(BusinessException ex) {
         return forException(ResultEnum.BUSINESS_FAIL, ex);
     }
