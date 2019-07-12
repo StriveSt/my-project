@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.plt.base.configuration.ControllerAdviceAutoConfiguration,\
-  com.plt.base.configuration.MyBatisPlusPaginationAutoConfig
+  com.plt.base.configuration.MyBatisPlusAutoConfig
