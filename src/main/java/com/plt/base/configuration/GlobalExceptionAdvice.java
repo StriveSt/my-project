@@ -34,9 +34,10 @@ public class GlobalExceptionAdvice {
     }
 
     @ExceptionHandler({IllegalParamException.class, IllegalArgumentException.class, IllegalStateException.class})
-    public Result argHandler(IllegalParamException ex) {
+    public Result argHandler(RuntimeException ex) {
         return forException(ResultEnum.ILLEGAL_PARAM, ex);
     }
+
     @ExceptionHandler(AuthException.class)
     public Result authHandler(AuthException ex) {
         return forException(ResultEnum.AUTH_FAIL, ex);
