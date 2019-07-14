@@ -33,11 +33,10 @@ public class GlobalExceptionAdvice {
         return forException(ResultEnum.BUSINESS_FAIL, ex);
     }
 
-    @ExceptionHandler(IllegalParamException.class)
+    @ExceptionHandler({IllegalParamException.class, IllegalArgumentException.class, IllegalStateException.class})
     public Result argHandler(IllegalParamException ex) {
         return forException(ResultEnum.ILLEGAL_PARAM, ex);
     }
-
     @ExceptionHandler(AuthException.class)
     public Result authHandler(AuthException ex) {
         return forException(ResultEnum.AUTH_FAIL, ex);
