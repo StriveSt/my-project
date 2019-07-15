@@ -12,18 +12,24 @@ import java.io.PrintStream;
  */
 public class PltBanner implements Banner {
 
-    private static final String BANNER =
-            "  ____    _   _   _          _      _   _   _____ \n" +
-            " |  _ \\  | | | | | |        / \\    | \\ | | |_   _|\n" +
-            " | |_) | | | | | | |       / _ \\   |  \\| |   | |  \n" +
-            " |  __/  | |_| | | |___   / ___ \\  | |\\  |   | |  \n" +
-            " |_|      \\___/  |_____| /_/   \\_\\ |_| \\_|   |_|";
+    private static final String[] BANNER =
+            {
+                    "  ____    _   _   _          _      _   _   _____ ",
+                    " |  _ \\  | | | | | |        / \\    | \\ | | |_   _|",
+                    " | |_) | | | | | | |       / _ \\   |  \\| |   | |  ",
+                    " |  __/  | |_| | | |___   / ___ \\  | |\\  |   | |  ",
+                    " |_|      \\___/  |_____| /_/   \\_\\ |_| \\_|   |_|"
+            };
 
     private static final String SPRING_BOOT = " :: Base :: ";
 
     @Override
     public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
-        out.println(BANNER);
+        out.println(AnsiOutput.toString(AnsiColor.BRIGHT_RED, BANNER[0]));
+        out.println(AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, BANNER[1]));
+        out.println(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, BANNER[2]));
+        out.println(AnsiOutput.toString(AnsiColor.BRIGHT_BLUE, BANNER[3]));
+        out.println(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BANNER[4]));
         out.println(AnsiOutput.toString(AnsiColor.GREEN, SPRING_BOOT));
     }
 }
