@@ -42,4 +42,10 @@
             <version>${mysql.driver.version}</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>http://192.168.1.9:8081/repository/mvn_public/</url>
+        </repository>
+    </distributionManagement>
 </project>
