@@ -75,12 +75,4 @@ public class BaseAutoConfiguration {
             return interceptor;
         }
     }
-
-    public static void main(String[] args) {
-        Class[] declaringClass = BaseAutoConfiguration.class.getDeclaredClasses();
-
-        for (Class aClass : declaringClass) {
-            System.out.println(aClass);
-        }
-    }
 }

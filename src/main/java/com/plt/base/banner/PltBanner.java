@@ -21,7 +21,7 @@ public class PltBanner implements Banner {
                     " |_|      \\__,_| |_|  \\__,_| |_| |_|  \\__|",
             };
 
-    private static final String SPRING_BOOT = " :: Base :: ";
+    private static final String PLT_BASE = " :: Base :: ";
 
     @Override
     public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
@@ -30,6 +30,6 @@ public class PltBanner implements Banner {
         out.println(AnsiOutput.toString(AnsiColor.BRIGHT_YELLOW, BANNER[2]));
         out.println(AnsiOutput.toString(AnsiColor.BRIGHT_MAGENTA, BANNER[3]));
         out.println(AnsiOutput.toString(AnsiColor.BRIGHT_RED, BANNER[4]));
-        out.println(AnsiOutput.toString(AnsiColor.GREEN, SPRING_BOOT));
+        out.println(AnsiOutput.toString(AnsiColor.GREEN, PLT_BASE));
     }
 }
