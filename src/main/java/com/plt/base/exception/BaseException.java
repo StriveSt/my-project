@@ -5,6 +5,10 @@ package com.plt.base.exception;
  * @date 2019/7/3 11:13
  */
 public abstract class BaseException extends RuntimeException {
+    public BaseException() {
+        super();
+    }
+
     public BaseException(String message) {
         super(message);
     }
