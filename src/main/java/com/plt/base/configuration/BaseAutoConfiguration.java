@@ -4,11 +4,16 @@ import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.plt.base.aop.ControllerLogInterceptor;
 import com.plt.base.banner.PltBanner;
+import org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor;
+import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Controller;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -73,6 +78,22 @@ public class BaseAutoConfiguration {
             // 记录进日志
             interceptor.setWriteInLog(true);
             return interceptor;
+        }
+    }
+
+    @Configuration
+    public static class ControllerLogProxyConfiguration {
+        @Bean
+        public DefaultBeanFactoryPointcutAdvisor getDefaultBeanFactoryPointcutAdvisor() {
+            DefaultBeanFactoryPointcutAdvisor defaultBeanFactoryPointcutAdvisor = new DefaultBeanFactoryPointcutAdvisor();
+            AnnotationMatchingPointcut annotationMatchingPointcut = new AnnotationMatchingPointcut(Controller.class, true);
+            defaultBeanFactoryPointcutAdvisor.setPointcut(annotationMatchingPointcut);
+            defaultBeanFactoryPointcutAdvisor.setAdvice(getControllerLogInterceptor());
+            return defaultBeanFactoryPointcutAdvisor;
+        }
+        @Bean
+        public ControllerLogInterceptor getControllerLogInterceptor() {
+            return new ControllerLogInterceptor();
         }
     }
 }
