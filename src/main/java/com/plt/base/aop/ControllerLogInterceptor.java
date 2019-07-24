@@ -22,7 +22,10 @@ public class ControllerLogInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
+        String simpleName = invocation.getClass().getSimpleName();
         String name = invocation.getMethod().getName();
+        String joinPoint = simpleName + "#" + name;
+
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         Object value = invocation.proceed();
@@ -35,7 +38,7 @@ public class ControllerLogInterceptor implements MethodInterceptor {
         } else {
             timeMillis = AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, totalTimeMillis);
         }
-        logger.info("[{}] 接口执行时间 {}ms", name, timeMillis);
+        logger.info("[{}] 接口执行时间 {}ms", joinPoint, timeMillis);
         return value;
     }
 }
