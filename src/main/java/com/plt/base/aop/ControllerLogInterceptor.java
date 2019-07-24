@@ -22,7 +22,7 @@ public class ControllerLogInterceptor implements MethodInterceptor {
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        String simpleName = invocation.getClass().getSimpleName();
+        String simpleName = invocation.getThis().getClass().getSimpleName();
         String name = invocation.getMethod().getName();
         String joinPoint = simpleName + "#" + name;
 
