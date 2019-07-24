@@ -11,6 +11,7 @@ import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 
@@ -86,6 +87,7 @@ public class BaseAutoConfiguration {
     @Configuration
     public static class ControllerLogProxyConfiguration {
         @Bean
+        @Primary
         public DefaultBeanFactoryPointcutAdvisor getDefaultBeanFactoryPointcutAdvisor() {
             DefaultBeanFactoryPointcutAdvisor defaultBeanFactoryPointcutAdvisor = new DefaultBeanFactoryPointcutAdvisor();
             AnnotationMatchingPointcut annotationMatchingPointcut = new AnnotationMatchingPointcut(Controller.class, true);
@@ -93,6 +95,7 @@ public class BaseAutoConfiguration {
             defaultBeanFactoryPointcutAdvisor.setAdvice(getControllerLogInterceptor());
             return defaultBeanFactoryPointcutAdvisor;
         }
+
         @Bean
         public ControllerLogInterceptor getControllerLogInterceptor() {
             return new ControllerLogInterceptor();
