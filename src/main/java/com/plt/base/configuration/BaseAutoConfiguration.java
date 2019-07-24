@@ -11,7 +11,6 @@ import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 
@@ -81,6 +80,9 @@ public class BaseAutoConfiguration {
         }
     }
 
+    /**
+     * 日志aop 记录接口调用时间
+     */
     @Configuration
     public static class ControllerLogProxyConfiguration {
         @Bean
