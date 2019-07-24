@@ -6,9 +6,11 @@ import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.plt.base.aop.ControllerLogInterceptor;
 import com.plt.base.banner.PltBanner;
+import org.springframework.aop.framework.autoproxy.InfrastructureAdvisorAutoProxyCreator;
 import org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -85,6 +87,7 @@ public class BaseAutoConfiguration {
      * 日志aop 记录接口调用时间
      */
     @Configuration
+    @ConditionalOnClass(InfrastructureAdvisorAutoProxyCreator.class)
     public static class ControllerLogProxyConfiguration {
         @Bean
         @Primary
