@@ -19,15 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public class GlobalExceptionAdvice {
 
-    private Logger log = LoggerFactory.getLogger(GlobalExceptionAdvice.class);
+    private final Logger log = LoggerFactory.getLogger(GlobalExceptionAdvice.class);
 
     /**
      * 拦截所有错误
      */
     @ExceptionHandler(RuntimeException.class)
     public Result exHandler(RuntimeException ex) {
-        log.error("系统错误：{}", ex.getMessage());
-        ex.printStackTrace();
+        log.error("系统错误 ", ex);
         return Result.generate(ResultEnum.SYSTEM_EXCEPTION_ERROR);
     }
 
@@ -36,7 +35,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler(BusinessException.class)
     public Result bizExHandler(BusinessException ex) {
-        log.info("业务错误：{}", ex.getMessage());
+        log.info("业务错误 {}", ex.getMessage());
         Result<Object> result = Result.generate(ResultEnum.BUSINESS_FAIL);
         result.setMessage(ex.getMessage());
         return result;
@@ -47,9 +46,8 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler({IllegalParamException.class, IllegalArgumentException.class, IllegalStateException.class})
     public Result argHandler(RuntimeException ex) {
-        log.info("参数错误：{}", ex.getMessage());
-        ex.printStackTrace();
-        return Result.generateSuccess(ResultEnum.ILLEGAL_PARAM);
+        log.info("参数错误 {}", ex.getMessage());
+        return Result.generate(ResultEnum.ILLEGAL_PARAM);
     }
 
     /**
