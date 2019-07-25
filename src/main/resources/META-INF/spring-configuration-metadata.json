@@ -1,0 +1,11 @@
+{
+  "properties": [
+    {
+      "name": "base.log.maxExecuteTimeMillis",
+      "type": "java.lang.Long",
+      "description": "log max time",
+      "sourceType": "com.plt.base.configuration.LogConfigurationProperties",
+      "defaultValue": 3000
+    }
+  ]
+}

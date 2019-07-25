@@ -18,7 +18,15 @@ public class ControllerLogInterceptor implements MethodInterceptor {
     /**
      * 最大执行时间
      */
-    private final static long MAX_EXECUTE_TIME_MILLIS = 3000;
+    private long maxExecuteTimeMillis = 3000;
+
+    public long getMaxExecuteTimeMillis() {
+        return maxExecuteTimeMillis;
+    }
+
+    public void setMaxExecuteTimeMillis(long maxExecuteTimeMillis) {
+        this.maxExecuteTimeMillis = maxExecuteTimeMillis;
+    }
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -33,7 +41,7 @@ public class ControllerLogInterceptor implements MethodInterceptor {
         long totalTimeMillis = stopWatch.getTotalTimeMillis();
         // 监听时间
         String timeMillis;
-        if (totalTimeMillis >= MAX_EXECUTE_TIME_MILLIS) {
+        if (totalTimeMillis >= maxExecuteTimeMillis) {
             timeMillis = AnsiOutput.toString(AnsiColor.BRIGHT_RED, totalTimeMillis);
         } else {
             timeMillis = AnsiOutput.toString(AnsiColor.BRIGHT_GREEN, totalTimeMillis);

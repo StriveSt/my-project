@@ -11,6 +11,7 @@ import org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -88,7 +89,14 @@ public class BaseAutoConfiguration {
      */
     @Configuration
     @ConditionalOnClass(InfrastructureAdvisorAutoProxyCreator.class)
+    @EnableConfigurationProperties(LogConfigurationProperties.class)
     public static class ControllerLogProxyConfiguration {
+        private LogConfigurationProperties logConfigurationProperties;
+
+        public ControllerLogProxyConfiguration(LogConfigurationProperties logConfigurationProperties) {
+            this.logConfigurationProperties = logConfigurationProperties;
+        }
+
         @Bean
         @Primary
         public DefaultBeanFactoryPointcutAdvisor getDefaultBeanFactoryPointcutAdvisor() {
@@ -101,7 +109,9 @@ public class BaseAutoConfiguration {
 
         @Bean
         public ControllerLogInterceptor getControllerLogInterceptor() {
-            return new ControllerLogInterceptor();
+            ControllerLogInterceptor controllerLogInterceptor = new ControllerLogInterceptor();
+            controllerLogInterceptor.setMaxExecuteTimeMillis(logConfigurationProperties.getMaxExecuteTimeMillis());
+            return controllerLogInterceptor;
         }
     }
 }
