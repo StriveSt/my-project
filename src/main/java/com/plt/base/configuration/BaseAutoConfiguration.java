@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Controller;
 
 import java.util.LinkedList;
@@ -104,6 +105,8 @@ public class BaseAutoConfiguration {
             AnnotationMatchingPointcut annotationMatchingPointcut = new AnnotationMatchingPointcut(Controller.class, true);
             defaultBeanFactoryPointcutAdvisor.setPointcut(annotationMatchingPointcut);
             defaultBeanFactoryPointcutAdvisor.setAdvice(getControllerLogInterceptor());
+            // highest precedence
+            defaultBeanFactoryPointcutAdvisor.setOrder(Ordered.HIGHEST_PRECEDENCE);
             return defaultBeanFactoryPointcutAdvisor;
         }
 
