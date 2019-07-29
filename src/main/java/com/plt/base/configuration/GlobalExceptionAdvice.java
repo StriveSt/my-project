@@ -7,6 +7,7 @@ import com.plt.base.exception.BusinessException;
 import com.plt.base.exception.IllegalParamException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -59,10 +60,11 @@ public class GlobalExceptionAdvice {
         return Result.generate(ResultEnum.AUTH_FAIL);
     }
 
-    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    @ExceptionHandler({HttpRequestMethodNotSupportedException.class, HttpMediaTypeException.class})
     public Result methodException(HttpRequestMethodNotSupportedException ex) {
+        log.info("不支持的请求", ex);
         Result<Object> result = Result.generate(ResultEnum.ILLEGAL_PARAM);
-        result.setMessage("不支持的请求方法");
+        result.setMessage("不支持的请求");
         return result;
     }
 }
