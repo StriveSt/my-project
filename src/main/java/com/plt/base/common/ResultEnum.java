@@ -6,7 +6,7 @@ package com.plt.base.common;
 public enum ResultEnum {
     OK(200, "SUCCESS"),
     AUTH_FAIL(400, "权限不足"),
-    ILLEGAL_PARAM(501, "非法参数"),
+    ILLEGAL_PARAM(501, "参数错误"),
     BUSINESS_FAIL(502, "业务处理失败"),
     SYSTEM_EXCEPTION_ERROR(503, "系统异常"),
     ;

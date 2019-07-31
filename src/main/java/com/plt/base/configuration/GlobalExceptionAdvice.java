@@ -27,7 +27,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler(RuntimeException.class)
     public Result exHandler(RuntimeException ex) {
-        log.error("系统错误 ", ex);
+        log.error("系统错误: ", ex);
         return Result.generate(ResultEnum.SYSTEM_EXCEPTION_ERROR);
     }
 
@@ -36,7 +36,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler(BusinessException.class)
     public Result bizExHandler(BusinessException ex) {
-        log.info("业务错误 {}", ex.getMessage());
+        log.info("业务错误: {}", ex.getMessage());
         Result<Object> result = Result.generate(ResultEnum.BUSINESS_FAIL);
         result.setMessage(ex.getMessage());
         return result;
@@ -47,7 +47,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler({IllegalParamException.class, IllegalArgumentException.class, IllegalStateException.class})
     public Result argHandler(RuntimeException ex) {
-        log.info("参数错误 {}", ex.getMessage());
+        log.info("参数错误: {}", ex.getMessage());
         return Result.generate(ResultEnum.ILLEGAL_PARAM);
     }
 
@@ -56,7 +56,7 @@ public class GlobalExceptionAdvice {
      */
     @ExceptionHandler(AuthException.class)
     public Result authHandler(AuthException ex) {
-        log.info("授权失败 {}", ex.getMessage());
+        log.info("授权失败: {}", ex.getMessage());
         return Result.generate(ResultEnum.AUTH_FAIL);
     }
 
