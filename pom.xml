@@ -47,13 +47,19 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.driver.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+        </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <url>http://192.168.1.9:8081/repository/mvn_public/</url>
-        </repository>
-    </distributionManagement>
+
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>nexus</id>-->
+<!--            <url>http://192.168.1.9:8081/repository/mvn_public/</url>-->
+<!--        </repository>-->
+<!--    </distributionManagement>-->
 
     <build>
         <plugins>
